@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Медоеду ВСЁ - ИИ для каждого, кто готов действовать</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FFB800;
+            --dark: #1a1a1a;
+            --accent: #FF6B35;
+            --light: #f5f5f5;
+            --text: #333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--dark) 0%, #2a2a2a 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: #FFD700;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 184, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 184, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 184, 0, 0.15);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 900;
+            margin: 20px 0;
+            line-height: 1.2;
+        }
+
+        .hero-highlight {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin: 20px 0 40px;
+            color: #ddd;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn-large {
+            padding: 18px 48px;
+            font-size: 16px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 80px;
+            padding-top: 60px;
+            border-top: 2px solid rgba(255, 184, 0, 0.2);
+        }
+
+        .stat {
+            background: rgba(255, 184, 0, 0.05);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            font-size: 14px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* PROBLEM SECTION */
+        .problem {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 44px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 50px;
+            max-width: 600px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .problem-card {
+            background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateX(10px);
+        }
+
+        .problem-card h3 {
+            font-size: 20px;
+            margin: 15px 0 10px;
+            color: var(--accent);
+        }
+
+        .problem-card p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        .problem-emoji {
+            font-size: 40px;
+        }
+
+        /* SOLUTION SECTION */
+        .solution {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--dark) 0%, #2a2a2a 100%);
+            color: white;
+        }
+
+        .solution .section-title {
+            color: white;
+        }
+
+        .solution .section-subtitle {
+            color: #aaa;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .solution-card {
+            background: rgba(255, 184, 0, 0.08);
+            border: 2px solid rgba(255, 184, 0, 0.3);
+            padding: 40px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(255, 184, 0, 0.2);
+            background: rgba(255, 184, 0, 0.12);
+        }
+
+        .solution-card h3 {
+            font-size: 22px;
+            margin: 15px 0 10px;
+            color: var(--primary);
+        }
+
+        .solution-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .solution-card p {
+            color: #ddd;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* COURSES SECTION */
+        .courses {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .course-header {
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8C42 100%);
+            padding: 30px;
+            color: white;
+            height: 120px;
+            display: flex;
+            align-items: center;
+        }
+
+        .course-header.advanced {
+            background: linear-gradient(135deg, var(--primary) 0%, #FFD700 100%);
+            color: var(--dark);
+        }
+
+        .course-header h3 {
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .course-body {
+            padding: 30px;
+        }
+
+        .course-body p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .course-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .tool-tag {
+            background: rgba(255, 184, 0, 0.1);
+            color: var(--accent);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .course-footer {
+            padding: 0 30px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course-level {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* PHILOSOPHY SECTION */
+        .philosophy {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--dark) 0%, #1f1f1f 100%);
+            color: white;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .philosophy-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .philosophy-text p {
+            margin-bottom: 20px;
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .philosophy-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .philosophy-list li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            color: #bbb;
+            border-bottom: 1px solid rgba(255, 184, 0, 0.1);
+        }
+
+        .philosophy-list li:before {
+            content: '🦡';
+            position: absolute;
+            left: 0;
+            font-size: 24px;
+        }
+
+        .philosophy-image {
+            background: linear-gradient(135deg, rgba(255, 184, 0, 0.2) 0%, rgba(255, 107, 53, 0.2) 100%);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            font-size: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-buttons {
+                width: 100%;
+            }
+
+            .nav-buttons .btn {
+                flex: 1;
+            }
+        }
+
+        /* TESTIMONIALS SECTION */
+        .testimonials {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #f9f9f9 0%, #f5f5f5 100%);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .testimonial-text {
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 14px;
+        }
+
+        .testimonial-role {
+            color: var(--accent);
+            font-size: 13px;
+        }
+
+        /* CTA SECTION */
+        .final-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8C42 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 44px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: #999;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 2px solid var(--primary);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* ANIMATIONS */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* INTERACTIVE ELEMENTS */
+        .accordion {
+            margin-top: 30px;
+        }
+
+        .accordion-item {
+            background: white;
+            border: 1px solid #eee;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: linear-gradient(90deg, #f9f9f9 0%, #f5f5f5 100%);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--dark);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(90deg, #fff 0%, #fafafa 100%);
+        }
+
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            padding: 20px;
+        }
+
+        .accordion-toggle {
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        .accordion-item.active .accordion-toggle {
+            transform: rotate(180deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .final-cta h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span>🦡</span>
+                    <span>МЕДОЕДУ ВСЁ</span>
+                </div>
+                <div class="nav-buttons">
+                    <a href="#courses" class="btn btn-secondary">Курсы</a>
+                    <a href="https://t.me/MedoeduZ" target="_blank" class="btn btn-primary">Вступить в ТГ</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">🔥 ИИ — ТЕПЕРЬ ОБЯЗАТЕЛЬНО</div>
+                <h1>ИИ не входит в твой скилл-сет?<br><span class="hero-highlight">Ты уже позади</span></h1>
+                <p>Это не о том, использовать ИИ или нет. Это дефолт. Без ИИ ты конкурируешь с людьми из 1990-х. За 4 недели станешь мастером. Один преподаватель, один курс, твой реальный рост. Честно и агрессивно.</p>
+                
+                <div class="hero-cta">
+                    <button class="btn btn-primary btn-large" onclick="scrollTo('courses')">Начать боевую подготовку</button>
+                    <button class="btn btn-secondary btn-large" onclick="scrollTo('philosophy')">Узнай о философии</button>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">1</div>
+                        <div class="stat-text">Преподаватель</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-text">Потенциал роста</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-text">Честность & Мотивация</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">Твоя реальность в 2024</h2>
+            <p class="section-subtitle">Не паникуй, но понимай суть. Это не хайп, это реальность рынка.</p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-emoji">📉</div>
+                    <h3>Конкурент уже использует ИИ</h3>
+                    <p>Твой сосед по профессии уже дружит с ChatGPT и Midjourney. Он работает быстрее, дешевле, лучше. Что ты делаешь?</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-emoji">⏳</div>
+                    <h3>Время — твой противник</h3>
+                    <p>Каждый день без ИИ в твоём арсенале — это упущенный доход, упущенные знания, упущенная карьера. Завтра будет еще хуже.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-emoji">🌀</div>
+                    <h3>Информационный хаос</h3>
+                    <p>Тысячи курсов, тысячи обещаний, 90% — это вода. Нужен кто-то, кто говорит прямо: вот инструмент, вот результат, вперёд.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-emoji">💼</div>
+                    <h3>Работодатель ждёт этого</h3>
+                    <p>ИИ навык — это уже не преимущество. Это requirement. Его нет на CV? Следующий кандидат уже проходит собеседование.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-emoji">🛑</div>
+                    <h3>Самообман не поможет</h3>
+                    <p>"Пока ИИ не так хорош", "Это временное", "Мне не нужно" — это мантры потеряшей стороны истории. Не будь потеряшей.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-emoji">⚡</div>
+                    <h3>Решение существует</h3>
+                    <p>4 недели интенсивной, честной, практической подготовки. Не мотивирующие речи. Не фейковые отзывы. Реальный результат.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION SECTION -->
+    <section class="solution">
+        <div class="container">
+            <h2 class="section-title">Медоед не уходит из боя</h2>
+            <p class="section-subtitle">Вот что мы делаем иначе. Вот почему это работает.</p>
+            
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">🎯</div>
+                    <h3>Боевая практика</h3>
+                    <p>Не теория. Не лекции. Только практика. Первый день — первый результат. Ты не просто учишься, ты создаёшь реальные проекты, которые можно добавить в портфолио.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">⚡</div>
+                    <h3>Персональная адаптация</h3>
+                    <p>Дизайнер? Копирайтер? Программист? Видеомонтажёр? Берём ЧОЙ инструмент, настраиваем под твою область и показываем магию. Один курс — множество траекторий.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🔥</div>
+                    <h3>Честная коммуникация</h3>
+                    <p>Без воды. Без маркетинговых трюков. Расскажем где ИИ не поможет. Расскажем честно про ограничения. Уважаем твоё время и твой мозг.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🦡</div>
+                    <h3>Комьюнити единомышленников</h3>
+                    <p>Не одинок. Вокруг тебя 500+ людей, которые тоже учатся, создают, растут. Обмен опытом, поддержка, совместные проекты. Вместе мощнее.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">💪</div>
+                    <h3>Система, которая развивает</h3>
+                    <p>Уровни, достижения, челленджи. Не для галочки — для реального прогресса. Каждый шаг отмечен, каждое достижение важно. Ты видишь свой рост.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🚀</div>
+                    <h3>Доступ к экспертизе</h3>
+                    <p>Не робот бросит теорию и исчезнет. Здесь есть люди, которые работают с ИИ каждый день. Вопросы, обратная связь, подсказки. Поддержка всегда рядом.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY SECTION -->
+    <section class="philosophy">
+        <div class="container">
+            <div class="philosophy-grid">
+                <div class="philosophy-text">
+                    <h3>Философия медоеда</h3>
+                    <p>Медоед не жалуется на обстоятельства. Медоед имеет 30 килограммов веса и не боится львов. Почему? Потому что не думает — действует.</p>
+                    <p>Один преподаватель, один проект, одна идея: научить людей работать с ИИ честно, без маркетинговой лжи. Без фейковых отзывов, без корпоративной воды.</p>
+                    <p>ИИ — это не опция. Это дефолт. И если ты это понимаешь, ты уже впереди 90% людей. Теперь нужно только сделать следующий шаг.</p>
+                    <ul class="philosophy-list">
+                        <li><strong>Честность:</strong> Без маркетинговых трюков. Только правда и результаты.</li>
+                        <li><strong>Действие:</strong> 4 недели интенсива. Не теория, практика. Не просмотры, создание.</li>
+                        <li><strong>Персональный контакт:</strong> Один преподаватель знает каждого. Обратная связь, не роботы.</li>
+                        <li><strong>Рост системы:</strong> Сейчас один, завтра агенты и боты. Ты часть этого роста.</li>
+                    </ul>
+                </div>
+                <div class="philosophy-image">
+                    <div style="font-size: 80px; margin-bottom: 20px;">🦡</div>
+                    <p style="color: var(--primary); font-weight: 700; font-size: 16px; margin-bottom: 15px;">МЕДОЕДУ ВСЁ</p>
+                    <p style="color: #bbb; font-weight: 700; font-size: 14px;">= тебе всё, если ты готов действовать</p>
+                    <p style="color: #999; font-size: 12px; margin-top: 20px;">Без фейков, без лжи, только реальность</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COURSES SECTION -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <h2 class="section-title">Боевые дисциплины</h2>
+            <p class="section-subtitle">Выбери свой путь. Каждый курс — это не просто обучение, это трансформация.</p>
+            
+            <div class="courses-grid">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>🎨 Визуал-гиперболоид</h3>
+                    </div>
+                    <div class="course-body">
+                        <p>Овладей ИИ-инструментами для создания изображений, дизайна и видео. От Midjourney до Runway — полный арсенал.</p>
+                        <div class="course-tools">
+                            <span class="tool-tag">Midjourney</span>
+                            <span class="tool-tag">Runway</span>
+                            <span class="tool-tag">Adobe Firefly</span>
+                            <span class="tool-tag">ComfyUI</span>
+                        </div>
+                        <p><strong>Результат:</strong> Создашь потрясающие изображения, которые продашь или используешь для своего проекта.</p>
+                    </div>
+                    <div class="course-footer">
+                        <span class="course-level">🟢 Начинающий</span>
+                        <button class="btn btn-primary" onclick="window.open('https://t.me/MedoeduZ', '_blank')">Записаться</button>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>✍️ Копирайтер-ассасин</h3>
+                    </div>
+                    <div class="course-body">
+                        <p>Научись использовать ИИ для создания текстов, которые продают. Продам, посты, письма, статьи — всё через призму боевого копирайтинга.</p>
+                        <div class="course-tools">
+                            <span class="tool-tag">Claude</span>
+                            <span class="tool-tag">GPT-4</span>
+                            <span class="tool-tag">Perplexity</span>
+                            <span class="tool-tag">Notebooklm</span>
+                        </div>
+                        <p><strong>Результат:</strong> Пишешь в 10 раз быстрее, текст получается продающим, а деньги приходят сами.</p>
+                    </div>
+                    <div class="course-footer">
+                        <span class="course-level">🟢 Начинающий</span>
+                        <button class="btn btn-primary" onclick="window.open('https://t.me/MedoeduZ', '_blank')">Записаться</button>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-card">
+                    <div class="course-header advanced">
+                        <h3>💻 Кодер-киборг</h3>
+                    </div>
+                    <div class="course-body">
+                        <p>ИИ кодит? Да, но не без тебя. Научись использовать GitHub Copilot, Claude и прочие инструменты, чтобы разработка стала проще и быстрее.</p>
+                        <div class="course-tools">
+                            <span class="tool-tag">GitHub Copilot</span>
+                            <span class="tool-tag">Claude</span>
+                            <span class="tool-tag">Replit</span>
+                            <span class="tool-tag">v0.dev</span>
+                        </div>
+                        <p><strong>Результат:</strong> Напишешь больше кода за день, чем раньше за неделю. Прототипы создаёшь за часы.</p>
+                    </div>
+                    <div class="course-footer">
+                        <span class="course-level">🟡 Средний</span>
+                        <button class="btn btn-primary" onclick="window.open('https://t.me/MedoeduZ', '_blank')">Записаться</button>
+                    </div>
+                </div>
+
+                <!-- Course 4 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>📊 Аналитик-магистр</h3>
+                    </div>
+                    <div class="course-body">
+                        <p>Превратись в ИИ-аналитика. Работай с данными, создавай выводы, принимай решения. ИИ поможет, но ты будешь думать.</p>
+                        <div class="course-tools">
+                            <span class="tool-tag">ChatGPT</span>
+                            <span class="tool-tag">Python</span>
+                            <span class="tool-tag">Tableau</span>
+                            <span class="tool-tag">SQL</span>
+                        </div>
+                        <p><strong>Результат:</strong> Аналитики с ИИ-навыками зарабатывают на 30-50% больше. Ты будешь один из них.</p>
+                    </div>
+                    <div class="course-footer">
+                        <span class="course-level">🟡 Средний</span>
+                        <button class="btn btn-primary" onclick="window.open('https://t.me/MedoeduZ', '_blank')">Записаться</button>
+                    </div>
+                </div>
+
+                <!-- Course 5 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>🎬 Видеомонтажник+</h3>
+                    </div>
+                    <div class="course-body">
+                        <p>ИИ делает видео реальностью. Автоматизируй монтаж, создавай эффекты, генерируй подписи. Твой workflow станет киберпанком.</p>
+                        <div class="course-tools">
+                            <span class="tool-tag">Runway</span>
+                            <span class="tool-tag">Synthesia</span>
+                            <span class="tool-tag">Adobe Premiere</span>
+                            <span class="tool-tag">DaVinci Resolve</span>
+                        </div>
+                        <p><strong>Результат:</strong> Видео за часы вместо дней. Качество выше. Времени на творчество больше.</p>
+                    </div>
+                    <div class="course-footer">
+                        <span class="course-level">🟢 Начинающий</span>
+                        <button class="btn btn-primary" onclick="window.open('https://t.me/MedoeduZ', '_blank')">Записаться</button>
+                    </div>
+                </div>
+
+                <!-- Course 6 -->
+                <div class="course-card">
+                    <div class="course-header advanced">
+                        <h3>🚀 Супер-инженер ИИ</h3>
+                    </div>
+                    <div class="course-body">
+                        <p>Для тех, кто готов идти глубже. Промпт-инженеринг, файн-тюнинг моделей, создание своих ИИ-агентов. Вершина иерархии.</p>
+                        <div class="course-tools">
+                            <span class="tool-tag">OpenAI API</span>
+                            <span class="tool-tag">LangChain</span>
+                            <span class="tool-tag">n8n</span>
+                            <span class="tool-tag">Anthropic API</span>
+                        </div>
+                        <p><strong>Результат:</strong> Создашь свой ИИ-продукт, сможешь монетизировать, станешь экспертом.</p>
+                    </div>
+                    <div class="course-footer">
+                        <span class="course-level">🔴 Продвинутый</span>
+                        <button class="btn btn-primary" onclick="window.open('https://t.me/MedoeduZ', '_blank')">Записаться</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div style="margin-top: 80px;">
+                <h3 style="font-size: 28px; margin-bottom: 30px; color: var(--dark);">Честные вопросы и ответы</h3>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Это серьёзно? Только один преподаватель?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Да, это серьёзно. Один преподаватель = один человек, который отвечает за качество, а не цифра в маркетинговом объявлении. Лучше один реальный преподаватель, чем 10 галерей "expert teachers". Качество > количество.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Почему нет отзывов от студентов?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Потому что я не лгу. Поддельные отзывы — это грех маркетинга. Сейчас проект на начальной стадии, и это нормально. Если ты ищешь фейк-отзывы — здесь их не будет. Если ищешь реальный результат — будешь первым.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Как я могу быть уверен в качестве?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Вступи в сообщество (@MedoeduZ), поговори с преподавателем, посмотри материалы, задай вопросы. Никаких обязательств. Проверь честно. Если говно — уйди. Если качество — присоединяйся к первым.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>А что дальше? Только один курс?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Нет. Сейчас один курс (он же 6 путей обучения под разные профессии). Дальше: специальные образовательные боты, персональные агенты, расширение спектра. Ты вкладываешь в проект, который растёт, а не в мёртвый сайт.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Какой уровень нужен для начала?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Уровня можешь забыть. Начинают люди абсолютно без опыта. Если у тебя есть интернет, мозг и желание — тебе здесь место. Система поднимает всех с нуля.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Сколько времени нужно в день?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Рекомендуем 30-60 минут в день. За 4 недели это даст серьёзный результат. Если готов потратить больше — ещё лучше. Система гибкая, но результат зависит от твоего времени.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HONEST SECTION -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Честно про проект</h2>
+            <p class="section-subtitle">Без маркетинговой лжи. Без фейковых отзывов. Просто правда.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text" style="font-size: 16px; font-weight: 700;">Кто преподаёт?</div>
+                    <p style="font-size: 14px; color: #777; margin-top: 15px;">Один человек. <strong>@eugizus</strong> (PostoFilya). Физик по образованию, ИИ-тренер по жизни. Никаких "команд опытных преподов". Один перец, одна идея, 100% честность.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text" style="font-size: 16px; font-weight: 700;">Почему нет отзывов?</div>
+                    <p style="font-size: 14px; color: #777; margin-top: 15px;">Потому что они будут фейк. Сейчас проект на начальном этапе. Место для людей, которые не боятся быть первыми. Лучше одна реальная история успеха, чем 100 придуманных.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text" style="font-size: 16px; font-weight: 700;">Что есть сейчас?</div>
+                    <p style="font-size: 14px; color: #777; margin-top: 15px;">Сообщество в Telegram (<a href="https://t.me/MedoeduZ" style="color: var(--primary); text-decoration: none;"><strong>@MedoeduZ</strong></a>), один боевой бот (<a href="https://t.me/Medo_cyberbot" style="color: var(--primary); text-decoration: none;"><strong>@Medo_cyberbot</strong></a>), боевой курс и человек, который работает 24/7 над этим.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text" style="font-size: 16px; font-weight: 700;">Что будет?</div>
+                    <p style="font-size: 14px; color: #777; margin-top: 15px;">Специальные образовательные агенты. Персональные боты-наставники. Расширение спектра курсов. Рост системы. Ты будешь частью этого роста, а не зрителем.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text" style="font-size: 16px; font-weight: 700;">Качество или масса?</div>
+                    <p style="font-size: 14px; color: #777; margin-top: 15px;">Качество. Лучше 10 действительно обученных людей, чем 1000 прошедших мимо. Каждый ученик — это внимание, обратная связь, реальный результат.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text" style="font-size: 16px; font-weight: 700;">Почему мне это писать?</div>
+                    <p style="font-size: 14px; color: #777; margin-top: 15px;">Потому что уважаю твоё время. Потому что ненавижу маркетинговую ложь. Потому что человек, который честен с тобой на лендинге, будет честен и на курсе. Вот и всё.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA SECTION -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Медоед не ждёт завтра</h2>
+            <p>Начинай прямо сейчас. Первый шаг — вступить в сообщество, познакомиться с проектом, задать вопросы. Никаких обязательств. Просто честная информация и люди, которые готовы учиться.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://t.me/MedoeduZ" target="_blank" class="btn btn-primary btn-large">Сообщество 🦡</a>
+                <a href="https://t.me/Medo_cyberbot" target="_blank" class="btn btn-secondary btn-large" style="background: white; color: var(--accent);">Бот @eugizus</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://t.me/MedoeduZ" target="_blank">📱 Telegram</a>
+                <a href="https://t.me/Medo_cyberbot" target="_blank">🤖 Бот</a>
+                <a href="#courses">📚 Курсы</a>
+                <a href="https://github.com/eugizus" target="_blank">💻 GitHub</a>
+            </div>
+            <p>&copy; 2024 Медоеду ВСЁ | Проект PostoFilya (@eugizus)</p>
+            <p style="font-size: 12px; margin-top: 15px; color: var(--primary);">Сделано одним человеком с агрессией и верой 🦡⚡</p>
+        </div>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Smooth scroll function
+        function scrollTo(section) {
+            const element = document.getElementById(section);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Add fade-in animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.problem-card, .solution-card, .course-card, .testimonial-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
